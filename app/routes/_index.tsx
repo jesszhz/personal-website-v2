@@ -5,7 +5,7 @@ import Layout from "~/components/Layout";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "jessica zhang || howdy!" },
+    { title: "jessica zhang | howdy!" },
     {
       name: "description",
       content: "the website/bulliten/dumping ground of Jessica Zhang",

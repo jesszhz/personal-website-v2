@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* importing fonts */
+
+@layer base {
+  html {
+    @apply text-[#391500]
+  }
+}
+
+@font-face {
+  font-family: "M Plus Rounded 1c";
+  font-weight: 400;
+  src: url("../public/fonts/MPLUSRounded1c-Regular.ttf");
+}
+
+@font-face {
+  font-family: "M Plus Rounded 1c";
+  font-weight: 700;
+  src: url("../public/fonts/MPLUSRounded1c-Bold.ttf");
+}
+
+@layer base {
+  html {
+    font-family: "M Plus Rounded 1c", system-ui, sans-serif;
+  }
+}

@@ -5,8 +5,9 @@ interface props {
 
 export default function Layout({ children, className }: props) {
   return (
-    <div className={`px-96 py-24 h-screen ${className}`}>
-      <main>{children}</main>
+    <div className={`px-[clamp(1rem,15vw,6rem)] md:px-[clamp(6rem,20vw, 100vw)] py-[10vh] h-screen ${className}`}>
+
+      <main className="mx-auto w-full max-w-2xl">{children}</main>
     </div>
   );
 }

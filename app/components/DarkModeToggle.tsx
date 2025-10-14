@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
+import { Sun, Moon } from "lucide-react";
 
 type ThemePreference = "system" | "light" | "dark";
 
@@ -55,8 +56,8 @@ export function DarkModeToggle() {
     }
 
     return (
-        <button onClick={toggleLightDark}>
-            {theme === "dark" ? "toggle light mode" : "toggle dark mode"}
+        <button onClick={toggleLightDark} className="underline text-s">
+            {theme === "dark" ? <Sun className="stroke-rose hover:stroke-love transition ease-in-out duration-300" /> : <Moon className="stroke-rose hover:stroke-love transition ease-in-out duration-300" />}
         </button>
     )
 }

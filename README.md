@@ -36,3 +36,6 @@ Make sure to deploy the output of `remix build`
 
 - `build/`
 - `public/build/`
+
+## Color Theme
+USing the Rose Pine color theme: https://rosepinetheme.com/palette/

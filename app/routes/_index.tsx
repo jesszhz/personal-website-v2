@@ -1,7 +1,4 @@
 import type { MetaFunction } from "@remix-run/node";
-import { useLoaderData } from "@remix-run/react";
-import { useEffect } from "react";
-import DarkModeToggle from "~/components/DarkModeToggle";
 import Layout from "~/components/Layout";
 
 export const meta: MetaFunction = () => {
@@ -14,16 +11,7 @@ export const meta: MetaFunction = () => {
   ];
 };
 
-export const loader = async () => {
-  return { ok: true };
-};
-
 export default function Index() {
-  useEffect(() => {
-    console.log(data);
-  });
-
-  const data = useLoaderData();
   return (
     <Layout className="">
       <div>

@@ -8,13 +8,25 @@ const STORAGE_KEY = "theme-preference";
 
 function getSystemTheme(): "light" | "dark" {
     if (typeof window === "undefined") return "light";
-    return window.matchMedia("(prefers-color-cheme: dark)").matches ? "dark" : "light";
+    return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
 
 function applyTheme(theme: "light" | "dark") {
     const root = document.documentElement;
     root.classList.remove("light", "dark");
     root.classList.add(theme)
+}
+
+function transitionTheme(theme: "light" | "dark") {
+    if (typeof document !== "undefined" && typeof document.startViewTransition === "function") {
+        document.startViewTransition(() => {
+            flushSync(() => {
+                applyTheme(theme);
+            });
+        });
+    } else {
+        applyTheme(theme);
+    }
 }
 
 export function DarkModeToggle() {
@@ -41,11 +53,7 @@ export function DarkModeToggle() {
     }, [useSystem])
 
     useEffect(() => {
-        document.startViewTransition(() => {
-            flushSync(() => {
-                applyTheme(theme);
-            })
-        })
+        transitionTheme(theme);
     }, [theme])
 
     function toggleLightDark() {

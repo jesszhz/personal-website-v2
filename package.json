@@ -4,7 +4,9 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
+    "prebuild": "node scripts/copy-covers.mjs",
     "build": "remix build",
+    "predev": "node scripts/copy-covers.mjs",
     "dev": "remix dev --manual",
     "start": "remix-serve ./build/index.js",
     "typecheck": "tsc"
@@ -15,6 +17,7 @@
     "@remix-run/react": "^2.3.1",
     "@remix-run/serve": "^2.3.1",
     "@theme-toggles/react": "^4.1.0",
+    "gray-matter": "^4.0.3",
     "isbot": "^3.6.8",
     "lucide-react": "^0.545.0",
     "react": "^18.2.0",

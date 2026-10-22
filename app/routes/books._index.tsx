@@ -40,7 +40,10 @@ export default function BooksIndex() {
 
   return (
     <Layout className="" maxWidth="max-w-5xl">
-      <h1 className="text-lg mb-6">books ⋆⭒˚｡⋆</h1>
+      <p className="mb-6">
+        <Link to="/">← home</Link>
+      </p>
+      <h1 className="text-lg mb-6">reading log ⋆⭒˚｡⋆</h1>
 
       <div className="mb-8 flex flex-wrap gap-2 items-center">
         <button
@@ -74,7 +77,7 @@ export default function BooksIndex() {
       {filtered.length === 0 ? (
         <p className="text-muted mt-8">no books match those filters.</p>
       ) : (
-        <div className="columns-2 md:columns-3 lg:columns-4 gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {filtered.map((b) => (
             <BookCard key={b.slug} book={b} />
           ))}
@@ -84,11 +87,32 @@ export default function BooksIndex() {
   );
 }
 
+const GLOW_COLORS = [
+  "var(--color-love)",
+  "var(--color-gold)",
+  "var(--color-rose)",
+  "var(--color-pine)",
+  "var(--color-foam)",
+  "var(--color-iris)",
+];
+
+function hashSlug(slug: string): number {
+  let h = 0;
+  for (let i = 0; i < slug.length; i++) h = (h * 31 + slug.charCodeAt(i)) >>> 0;
+  return h;
+}
+
 function BookCard({ book }: { book: Book }) {
+  const h = hashSlug(book.slug);
+  const glow = GLOW_COLORS[h % GLOW_COLORS.length];
+  const tilt = `${(h % 2 === 0 ? 1 : -1) * (1 + ((h >> 3) % 2) * 0.5)}deg`;
   return (
     <Link
       to={`/books/${book.slug}`}
-      className="block mb-4 break-inside-avoid group"
+      style={
+        { "--glow": glow, "--tilt": tilt } as React.CSSProperties
+      }
+      className="block transition duration-300 hover:rotate-[var(--tilt)] hover:[filter:drop-shadow(0_0_14px_rgb(var(--glow)/0.75))]"
     >
       <div className="relative overflow-hidden rounded bg-overlay aspect-[2/3]">
         {book.cover_url ? (
@@ -101,10 +125,6 @@ function BookCard({ book }: { book: Book }) {
             ★
           </span>
         )}
-        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition bg-bg/85 flex flex-col justify-end p-3">
-          <p className="font-bold text-sm">{book.title}</p>
-          <p className="text-xs text-muted">{book.author}</p>
-        </div>
       </div>
     </Link>
   );

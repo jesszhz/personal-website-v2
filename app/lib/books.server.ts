@@ -44,7 +44,9 @@ function toBook(filename: string): Book {
   const { data, content } = matter(raw);
   const fm = data as BookFrontmatter;
 
-  const dates = [...(fm.read_dates ?? [])].sort();
+  const dates = [...(fm.read_dates ?? [])]
+    .map((d) => new Date(d).toISOString().slice(0, 10))
+    .sort();
   const first_read = dates[0] ?? "";
   const most_recent_read = dates.at(-1) ?? "";
 

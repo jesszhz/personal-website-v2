@@ -1,4 +1,5 @@
 import type { MetaFunction } from "@remix-run/node";
+import { Link } from "@remix-run/react";
 import Layout from "~/components/Layout";
 
 export const meta: MetaFunction = () => {
@@ -47,7 +48,9 @@ export default function Index() {
           </a>{" "}
           (msg me for editing permissions).
         </p>
-        <p></p>
+        <p className="mt-8">
+          <Link to="/books">reading log →</Link>
+        </p>
       </div>
     </Layout>
   );

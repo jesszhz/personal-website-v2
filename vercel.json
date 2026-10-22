@@ -1,0 +1,3 @@
+{
+  "buildCommand": "git submodule update --init --remote content && npm run build"
+}
